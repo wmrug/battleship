@@ -98,10 +98,10 @@ class TwoMinutesToChocolatePlayer
       if @probability_grid[@last_shot.x][@last_shot.y + 1]
         @probability_grid[@last_shot.x][@last_shot.y - 1] += PROBABILTY_STEP unless @probability_grid[@last_shot.x][@last_shot.y + 1] ==0
       end
-      if @probability_grid[@last_shot.x - 1][@last_shot.y]
+      if @probability_grid[@last_shot.x - 1] && @probability_grid[@last_shot.x - 1][@last_shot.y]
         @probability_grid[@last_shot.x - 1][@last_shot.y] += PROBABILTY_STEP unless @probability_grid[@last_shot.x - 1][@last_shot.y] ==0
       end
-      if @probability_grid[@last_shot.x + 1][@last_shot.y]
+      if @probability_grid[@last_shot.x + 1] && @probability_grid[@last_shot.x + 1][@last_shot.y]
         @probability_grid[@last_shot.x + 1][@last_shot.y] += PROBABILTY_STEP unless @probability_grid[@last_shot.x + 1][@last_shot.y] ==0
       end
     end
