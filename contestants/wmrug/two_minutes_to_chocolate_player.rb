@@ -74,7 +74,9 @@ class TwoMinutesToChocolatePlayer
     # ships_remaining is an array of the remaining opponents ships
 
     # return [x,y] # your next shot co-ordinates
-    return [@last_shot.x, @last_shot.y]
+    # For some bug-knows-why reason, x and y are swapped between the action and
+    # state :-/
+    return [@last_shot.y, @last_shot.x]
   end
 
   def update_probability_grid(state)
