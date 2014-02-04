@@ -74,7 +74,9 @@ class TwoMinutesToChocolatePlayer
     # ships_remaining is an array of the remaining opponents ships
 
     # return [x,y] # your next shot co-ordinates
-    return [@last_shot.x, @last_shot.y]
+    # For some bug-knows-why reason, x and y are swapped between the action and
+    # state :-/
+    return [@last_shot.y, @last_shot.x]
   end
 
   def update_probability_grid(state)
@@ -96,12 +98,12 @@ class TwoMinutesToChocolatePlayer
       # @file.puts "AFTER:" + @probability_grid[@last_shot.x][@last_shot.y - 1].to_s
       # @file.puts "-------------"
       if @probability_grid[@last_shot.x][@last_shot.y + 1]
-        @probability_grid[@last_shot.x][@last_shot.y - 1] += PROBABILTY_STEP unless @probability_grid[@last_shot.x][@last_shot.y + 1] ==0
+        @probability_grid[@last_shot.x][@last_shot.y + 1] += PROBABILTY_STEP unless @probability_grid[@last_shot.x][@last_shot.y + 1] ==0
       end
-      if @probability_grid[@last_shot.x - 1][@last_shot.y]
+      if @probability_grid[@last_shot.x - 1] && @probability_grid[@last_shot.x - 1][@last_shot.y]
         @probability_grid[@last_shot.x - 1][@last_shot.y] += PROBABILTY_STEP unless @probability_grid[@last_shot.x - 1][@last_shot.y] ==0
       end
-      if @probability_grid[@last_shot.x + 1][@last_shot.y]
+      if @probability_grid[@last_shot.x + 1] && @probability_grid[@last_shot.x + 1][@last_shot.y]
         @probability_grid[@last_shot.x + 1][@last_shot.y] += PROBABILTY_STEP unless @probability_grid[@last_shot.x + 1][@last_shot.y] ==0
       end
     end
